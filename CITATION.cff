@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software in research, please cite it using the metadata below."
+title: "LitScope"
+type: software
+authors:
+  - family-names: Patel
+    given-names: Dhaval
+repository-code: "https://github.com/dhavalpatelp1/litscope"
+url: "https://dhavalpatelp1.github.io/litscope/"
+abstract: "A lightweight browser-based literature discovery and citation-trail exploration tool using OpenAlex and Semantic Scholar, with local screening notes and CSV, BibTeX, and RIS export."
+keywords:
+  - literature review
+  - research software
+  - OpenAlex
+  - Semantic Scholar
+  - citation snowballing
+  - evidence synthesis
+license: MIT
