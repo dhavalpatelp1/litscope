@@ -1,0 +1,26 @@
+# Operating systems
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Local literature files and exports
+data/
+exports/
+*.pdf
+*.csv
+*.xlsx
+*.ris
+*.bib
