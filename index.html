@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LitScope — Literature Discovery & Citation Trails</title>
+<!--
+  LitScope — researcher edition.
+  Keyword search across 250M+ papers (OpenAlex + Semantic Scholar, free APIs, no key),
+  with a personal library (notes + reading status), citation snowballing,
+  and CSV / BibTeX / RIS export for Zotero, Mendeley, and EndNote.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <header class="masthead">
+    <p class="eyebrow">LITERATURE REVIEW</p>
+    <h1>LitScope</h1>
+    <p class="tagline">Search 250 million papers. Build your reading list. Export everything.</p>
+  </header>
+
+  <nav class="tabs" aria-label="Views">
+    <button id="tabSearch" type="button" class="tab active">Search</button>
+    <button id="tabLibrary" type="button" class="tab">Library <span class="n" id="libCount">0</span></button>
+  </nav>
+
+  <section id="searchView">
+    <div class="drawer" aria-label="Search">
+      <label for="q">Keywords</label>
+      <div class="kw-row">
+        <input id="q" type="text" autocomplete="off" placeholder="e.g. machine learning crop yield prediction">
+        <button id="go" type="button" class="btn-primary">Search papers</button>
+      </div>
+      <div class="controls">
+        <div><label for="source">Source</label><select id="source"><option value="openalex" selected>OpenAlex</option><option value="s2">Semantic Scholar</option></select></div>
+        <div><label for="count">Results</label><select id="count"><option>25</option><option>50</option><option selected>100</option><option>200</option><option>500</option></select></div>
+        <div><label for="yfrom">From year</label><input id="yfrom" inputmode="numeric" maxlength="4" placeholder="2015"></div>
+        <div><label for="yto">To year</label><input id="yto" inputmode="numeric" maxlength="4" placeholder="2026"></div>
+        <div><label for="mincites">Min citations</label><input id="mincites" inputmode="numeric" placeholder="0"></div>
+        <div><label for="sort">Sort by</label><select id="sort"><option value="relevance" selected>Relevance</option><option value="citations">Most cited</option><option value="newest">Newest</option></select></div>
+      </div>
+      <div class="checks">
+        <label class="check"><input id="articlesOnly" type="checkbox"> Journal &amp; conference papers only</label>
+        <label class="check"><input id="oaOnly" type="checkbox"> Free full text only</label>
+      </div>
+      <div id="recent" class="recent" hidden></div>
+    </div>
+
+    <div id="status" class="status" role="status"></div>
+
+    <div id="toolbar" class="toolbar" hidden>
+      <span id="summary" class="summary"></span>
+      <div class="actions">
+        <button id="backBtn" type="button" class="btn-ghost" hidden>&larr; Back</button>
+        <button id="csvBtn" type="button" class="btn-ghost">CSV</button>
+        <button id="bibBtn" type="button" class="btn-ghost">BibTeX</button>
+        <button id="risBtn" type="button" class="btn-ghost">RIS</button>
+        <button id="copyBtn" type="button" class="btn-ghost">Copy</button>
+      </div>
+    </div>
+
+    <ol id="results" class="cards"></ol>
+    <p id="empty" class="empty">Type a few keywords to pull the top papers on any topic.<br>Save the good ones to your library, or follow any paper's references and citations to snowball outward.</p>
+  </section>
+
+  <section id="libraryView" hidden>
+    <div class="toolbar">
+      <div class="chips" id="libChips"></div>
+      <div class="actions">
+        <button id="libCsvBtn" type="button" class="btn-ghost">CSV</button>
+        <button id="libBibBtn" type="button" class="btn-ghost">BibTeX</button>
+        <button id="libRisBtn" type="button" class="btn-ghost">RIS</button>
+        <button id="backupBtn" type="button" class="btn-ghost">Backup</button>
+        <button id="importBtn" type="button" class="btn-ghost">Import</button>
+      </div>
+    </div>
+    <div id="libStatus" class="status" role="status"></div>
+    <ol id="libList" class="cards"></ol>
+    <p id="libEmpty" class="empty">Nothing saved yet. Run a search and press <strong>Save</strong> on any paper —<br>it lands here with a reading status and a notes field, and stays put between sessions.</p>
+    <input id="importFile" class="hiddenfile" type="file" accept=".json,application/json">
+  </section>
+
+  <footer>
+    Sources: <a href="https://openalex.org" target="_blank" rel="noopener">OpenAlex</a> and <a href="https://www.semanticscholar.org" target="_blank" rel="noopener">Semantic Scholar</a> — free, open research indexes covering much of the scholarly literature. No account or API key is needed. Your library is saved in this browser; use Backup / Import to move it between devices.
+  </footer>
+</main>
+<script src="app-1.js"></script>
+<script src="app-2.js"></script>
+<script src="app-3.js"></script>
+<script src="app-4.js"></script>
+</body>
+</html>
